@@ -1,6 +1,8 @@
 import './styles.css';
 import { Channels, Messages, ThreadMessages } from './data-model';
 
+const IMAGE_PATH = "http://localhost:4000/assets/users/"
+
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const currentChannel = urlParams.get('channel') || 0;
@@ -35,7 +37,7 @@ if (messagesContainer !== null) {
   messages.forEach((message) => {
     const messageElement = `
       <div class="message ${message.id === Number(currentMessage) ? 'active' : ''}">
-        <img class="message-avatar" src="./${message.user.avatarFilename}" alt=${message.user.avatarFilename} />
+        <img class="message-avatar" src="${IMAGE_PATH}${message.user.avatarFilename}" alt=${message.user.avatarFilename} />
         <div class="message-content">
           <div class="message-head">
             <div class="message-user">${message.user.name} - ${message.user.role}</div>
@@ -56,7 +58,7 @@ if (threadContainer !== null) {
   if (parentMessage !== undefined) {
     const parentThread = `
       <div class="message">
-        <img class="message-avatar" src="./${parentMessage.user.avatarFilename}" alt="Sarah" />
+        <img class="message-avatar" src="${IMAGE_PATH}${parentMessage.user.avatarFilename}" alt=${parentMessage.user.avatarFilename} />
         <div class="message-content">
           <div class="message-head">
             <div class="message-user">${parentMessage.user.name} - ${parentMessage.user.role}</div>
@@ -71,7 +73,7 @@ if (threadContainer !== null) {
       const threadMessage = `
         <div class="thread-messages">
           <div class="message thread-message">
-            <img class="message-avatar" src="./${thread.user.avatarFilename}" alt="Sarah" />
+            <img class="message-avatar" src="${IMAGE_PATH}${thread.user.avatarFilename}" alt="${thread.user.avatarFilename}" />
             <div class="message-content">
               <div class="message-head">
                 <div class="message-user">${thread.user.name} - ${thread.user.role}</div>
